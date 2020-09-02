@@ -1,3 +1,3 @@
 # Heroes Firebase App
 
-Aplicación que implementa el Restful API de Firebase en Angular.
+Aplicación que implementa el REST API de Firebase en Angular.

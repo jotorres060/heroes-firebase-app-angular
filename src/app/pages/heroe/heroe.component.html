@@ -1,0 +1,72 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h1>Héroe <small class="font-italic">{{ heroe.nombre }}</small></h1>
+  <hr>
+
+  <div class="row text-right">
+    <div class="col">
+      <button class="btn btn-secondary" routerLink="/heroes">
+        <i class="fa fa-arrow-left"></i>
+        Regresar
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="animate__animated animate__fadeIn animate__faster">
+  <div class="row">
+    <div class="col">
+      <form autocomplete="off" (ngSubmit)="guardar(frm)" #frm="ngForm">
+        <div class="form-group">
+          <label>Firebase ID</label>
+          <input class="form-control" type="text" disabled="disabled" placeholder="Firebase ID"
+            name="id" [(ngModel)]="heroe.id">
+          <small class="form-text text-muted">Este campo es autogenerado</small>
+        </div>
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input class="form-control" type="text" placeholder="Nombre del héroe" required
+            name="nombre" [(ngModel)]="heroe.nombre" #nombre="ngModel" [class.is-invalid]="nombre.invalid && nombre.touched">
+
+          <small class="form-text text-danger" *ngIf="nombre.invalid && nombre.touched">
+            El nombre es obligatorio
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Poder</label>
+          <input class="form-control" type="text" placeholder="Poder del héroe" required
+            name="poder" [(ngModel)]="heroe.poder" #poder="ngModel" [class.is-invalid]="poder.invalid && poder.touched">
+          <small class="form-text text-danger" *ngIf="poder.invalid && poder.touched">
+            El poder es obligatorio
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Estado</label>
+          <br>
+
+          <button class="btn btn-outline-success w-50" type="button"
+            *ngIf="heroe.vivo" (click)="heroe.vivo = false">
+            <i class="fa fa-smile-wink"></i>
+            Vivo
+          </button>
+          <button class="btn btn-outline-danger w-50" type="button"
+            *ngIf="!heroe.vivo" (click)="heroe.vivo = true">
+            <i class="fa fa-dizzy"></i>
+            Muerto
+          </button>
+        </div>
+
+        <hr>
+
+        <div class="form-group text-center">
+          <button class="btn btn-secondary w-25" type="submit">
+            <i class="fa fa-save"></i>
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

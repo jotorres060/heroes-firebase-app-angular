@@ -1,0 +1,63 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h1>Listado de Héroes</h1>
+  <hr>
+
+  <div class="row">
+    <div class="col text-right">
+      <button class="btn btn-secondary" type="button" routerLink="/heroe/nuevo">
+        <i class="fa fa-plus"></i>
+        Agregar
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive mt-3 animate__animated animate__fadeIn animate__fast" *ngIf="!loading && heroes.length > 0">
+  <table class="table table-bordered shadow">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Poder</th>
+        <th scope="col">Vivo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let heroe of heroes; index as i;">
+        <th scope="row">{{ (i + 1) }}</th>
+        <td>{{ heroe.nombre }}</td>
+        <td>{{ heroe.poder }}</td>
+        <td>
+          <span class="badge badge-pill badge-info" *ngIf="heroe.vivo">Vivo</span>
+          <span class="badge badge-pill badge-secondary" *ngIf="!heroe.vivo">Muerto</span>
+        </td>
+        <td>
+          <button class="btn btn-info btn-sm mr-3" [routerLink]="['/heroe', heroe.id]">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="eliminar(heroe, i)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-3 animate__animated animate__fadeIn animate__fast" *ngIf="!loading && heroes.length == 0">
+  <div class="alert alert-info text-center">
+    <h5 class="alert-heading">
+      <i class="fas fa-info-circle"></i>
+      No se encontraron registros.
+    </h5>
+  </div>
+</div>
+
+<div class="mt-3 animate__animated animate__fadeIn animate__fast" *ngIf="loading">
+  <div class="alert alert-white text-center">
+    <h4 class="alert-heading">Cargando...</h4>
+    <p><i class="fa fa-sync-alt fa-spin fa-2x"></i></p>
+    <p class="mb-0"></p>
+  </div>
+</div>
